@@ -1,4 +1,4 @@
-module github.com/middleware-labs/golang-apm-mux/tree/master
+module github.com/middleware-labs/golang-apm-mux
 
 go 1.17
 
