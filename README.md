@@ -47,10 +47,8 @@ func (h spaHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	go track.Track(
-		track.WithConfigTag("service", "service1"),
-		track.WithConfigTag("host", "localhost:4320"),
+		track.WithConfigTag("service", "your service name"),
 		track.WithConfigTag("projectName", "demo-agent-apm"),
-		track.WithConfigTag("pauseMetrics", false),
 	)
 	r := mux.NewRouter()
 	r.Use(mw_mux.Middleware("my-server"))
