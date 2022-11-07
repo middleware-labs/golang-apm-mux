@@ -3,6 +3,7 @@ package mux
 import (
 	"github.com/gorilla/mux"
 
+	"github.com/middleware-labs/golang-apm/tracker"
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gorilla/mux/otelmux"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
@@ -11,12 +12,12 @@ import (
 
 type AttributeOption []attribute.KeyValue
 
-func Middleware(serviceName string) mux.MiddlewareFunc {
-	return otelmux.Middleware(serviceName)
+func Middleware(config *tracker.Config) mux.MiddlewareFunc {
+	return otelmux.Middleware(config.ServiceName)
 }
 
-func CreateTracer(serviceName string) oteltrace.Tracer {
-	var tracer = otel.Tracer(serviceName)
+func CreateTracer(config *tracker.Config) oteltrace.Tracer {
+	var tracer = otel.Tracer(config.ServiceName)
 	return tracer
 }
 
